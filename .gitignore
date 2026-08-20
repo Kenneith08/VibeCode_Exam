@@ -1,0 +1,15 @@
+# Fichier sensible - ne jamais commiter
+.env
+
+# Maven
+target/
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Logs
+*.log
