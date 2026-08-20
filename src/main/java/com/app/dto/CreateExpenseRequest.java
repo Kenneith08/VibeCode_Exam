@@ -5,10 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-/**
- * DTO de création d'une Expense.
- * Reçu dans le body de POST /expenses.
- */
 public class CreateExpenseRequest {
 
     @NotBlank(message = "userId est obligatoire")
@@ -21,23 +17,17 @@ public class CreateExpenseRequest {
     @NotBlank(message = "reason est obligatoire")
     private String reason;
 
-    /**
-     * Valeur attendue : NONE | MONTHLY | WEEKLY | YEARLY
-     * Défaut : NONE
-     */
     private String frequency = "NONE";
 
-    // ---------- Getters / Setters ----------
+    public String     getUserId()             { return userId; }
+    public void       setUserId(String v)     { this.userId = v; }
 
-    public String     getUserId()                { return userId; }
-    public void       setUserId(String v)        { this.userId = v; }
+    public BigDecimal getAmount()             { return amount; }
+    public void       setAmount(BigDecimal v) { this.amount = v; }
 
-    public BigDecimal getAmount()                { return amount; }
-    public void       setAmount(BigDecimal v)    { this.amount = v; }
+    public String     getReason()             { return reason; }
+    public void       setReason(String v)     { this.reason = v; }
 
-    public String     getReason()                { return reason; }
-    public void       setReason(String v)        { this.reason = v; }
-
-    public String     getFrequency()             { return frequency; }
-    public void       setFrequency(String v)     { this.frequency = v; }
+    public String     getFrequency()          { return frequency; }
+    public void       setFrequency(String v)  { this.frequency = v; }
 }

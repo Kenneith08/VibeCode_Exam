@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Repository JDBC pur pour les CashFlow (Donation & Expense).
- * Utilise DataSource → Connection → PreparedStatement.
- * Aucun JPA, aucun JdbcTemplate.
- */
 @Repository
 public class CashFlowRepository {
 
@@ -29,10 +24,6 @@ public class CashFlowRepository {
         this.dataSource = dataSource;
     }
 
-    // =====================================================================
-    //  GET /cash-flows?type=donation|expense
-    //  Récupère tous les cash-flows, avec filtre optionnel sur le type
-    // =====================================================================
     public List<CashFlowResponse> findAll(String type) {
         String sql = "SELECT id, user_id, created_at, amount, type, " +
                      "       comment, reason, frequency " +
@@ -65,10 +56,6 @@ public class CashFlowRepository {
         return results;
     }
 
-    // =====================================================================
-    //  GET /users/{id}/cash-flows
-    //  Récupère tous les cash-flows d'un utilisateur donné
-    // =====================================================================
     public List<CashFlowResponse> findByUserId(String userId) {
         String sql = "SELECT id, user_id, created_at, amount, type, " +
                      "       comment, reason, frequency " +
@@ -96,10 +83,6 @@ public class CashFlowRepository {
         return results;
     }
 
-    // =====================================================================
-    //  POST /expenses
-    //  Insère une nouvelle Expense en base
-    // =====================================================================
     public CashFlowResponse saveExpense(Expense expense) {
         String id = UUID.randomUUID().toString();
         Instant now = Instant.now();
@@ -126,7 +109,6 @@ public class CashFlowRepository {
             throw new RuntimeException("Erreur JDBC saveExpense : " + e.getMessage(), e);
         }
 
-        // Retourne le DTO de la ressource créée
         CashFlowResponse dto = new CashFlowResponse();
         dto.setId(id);
         dto.setUserId(expense.getUserId());
@@ -140,10 +122,6 @@ public class CashFlowRepository {
         return dto;
     }
 
-    // =====================================================================
-    //  GET /balance
-    //  Calcule le bilan global : total donations, total dépenses, solde net
-    // =====================================================================
     public BalanceResponse computeBalance() {
         String sql = "SELECT " +
                      "  COALESCE(SUM(CASE WHEN type = 'DONATION' THEN amount ELSE 0 END), 0) AS total_donations, " +
@@ -168,9 +146,6 @@ public class CashFlowRepository {
         return new BalanceResponse(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO);
     }
 
-    // =====================================================================
-    //  Mapping ResultSet → CashFlowResponse
-    // =====================================================================
     private CashFlowResponse mapRow(ResultSet rs) throws SQLException {
         CashFlowResponse dto = new CashFlowResponse();
 

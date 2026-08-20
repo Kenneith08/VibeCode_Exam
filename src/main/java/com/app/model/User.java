@@ -21,23 +21,21 @@ public class User {
         this.phone     = phone;
     }
 
-    // ---------- Getters / Setters ----------
+    public String getId()                { return id; }
+    public void   setId(String id)       { this.id = id; }
 
-    public String getId()                    { return id; }
-    public void   setId(String id)           { this.id = id; }
+    public String getRef()               { return ref; }
+    public void   setRef(String ref)     { this.ref = ref; }
 
-    public String getRef()                   { return ref; }
-    public void   setRef(String ref)         { this.ref = ref; }
+    public String getFirstName()         { return firstName; }
+    public void   setFirstName(String v) { this.firstName = v; }
 
-    public String getFirstName()             { return firstName; }
-    public void   setFirstName(String v)     { this.firstName = v; }
+    public String getLastName()          { return lastName; }
+    public void   setLastName(String v)  { this.lastName = v; }
 
-    public String getLastName()              { return lastName; }
-    public void   setLastName(String v)      { this.lastName = v; }
+    public String getEmail()             { return email; }
+    public void   setEmail(String email) { this.email = email; }
 
-    public String getEmail()                 { return email; }
-    public void   setEmail(String email)     { this.email = email; }
-
-    public String getPhone()                 { return phone; }
-    public void   setPhone(String phone)     { this.phone = phone; }
+    public String getPhone()             { return phone; }
+    public void   setPhone(String phone) { this.phone = phone; }
 }
