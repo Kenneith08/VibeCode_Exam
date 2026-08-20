@@ -3,28 +3,24 @@ package com.app.dto;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-/**
- * DTO de réponse générique pour un CashFlow (Donation ou Expense).
- * Les champs spécifiques sont null selon le type.
- */
 public class CashFlowResponse {
 
     private String     id;
     private String     userId;
     private Instant    createdAt;
     private BigDecimal amount;
-    private String     type;       // "DONATION" | "EXPENSE"
+    private String     type;
 
-    // -- Donation --
+
     private String     comment;
 
-    // -- Expense --
+
     private String     reason;
-    private String     frequency;  // valeur de l'enum en String
+    private String     frequency;
 
     public CashFlowResponse() {}
 
-    // ---------- Getters / Setters ----------
+
 
     public String     getId()                      { return id; }
     public void       setId(String id)             { this.id = id; }

@@ -3,22 +3,15 @@ package com.app.model;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-/**
- * Classe parente représentant une ligne cash_flows.
- * Pas d'héritage JPA — on gère le discriminateur "type" manuellement en JDBC.
- */
 public class CashFlow {
 
     private String     id;
     private String     userId;
     private Instant    createdAt;
     private BigDecimal amount;
-    /** Discriminateur : "DONATION" ou "EXPENSE" */
     private String     type;
 
     public CashFlow() {}
-
-    // ---------- Getters / Setters ----------
 
     public String getId()                    { return id; }
     public void   setId(String id)           { this.id = id; }
